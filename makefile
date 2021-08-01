@@ -3,8 +3,8 @@ CFLAGS   = -Wall -Wextra -pedantic -Wfloat-equal -Wundef -Wshadow -Wpointer-arit
 CFLAGS += -Wcast-qual -Wswitch-default -Wswitch-enum  -Wunreachable-code -O2 -g
 LDFLAGS  =  -lpthread -lrt  
 srcdir= src
-SRC := $(wildcard $(srcdir)/*.c)
-OBJFILES:=$(patsubst %c,%o,$(SRC))
+SRC := $(wildcard $(srcdir)/*.c) 
+OBJFILES:= $(patsubst %c,%o,$(SRC))
 TARGET   = out/main
 all: $(TARGET) clean print- usage
 $(TARGET): $(OBJFILES)
