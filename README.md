@@ -1,6 +1,6 @@
 # Multithreading-with-pthreads
 
-This project contains 5 threads that works with different approaches.
+This project contains 5 threads that work with different approaches.
 
 ### Listener Thread
 1) Reads the data from the console
