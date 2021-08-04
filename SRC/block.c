@@ -12,7 +12,7 @@ void *block_thread() {
     for (; follower < queue.head; follower++) {
       if (queue.data[follower] == ' ') {
         // add to buffer until <space>
-        printf("Get buffer\n");
+        printf("Adding to buffer\n");
         get_buffer();
         // notify other threads
         sem_post(&semProcess);

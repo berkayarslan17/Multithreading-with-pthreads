@@ -6,13 +6,9 @@ void *command_thread() {
   // If ends with s stop ListenerThread
   while (1) {
     sem_wait(&semCommand);
-    //printf("Command Thread\n");
-    print_buffer();
-    if (buf[buf_length] = 'S') {
+    if (buf[cursor_tail - 1] == 'S') {
       // Stop Listener Thread
       printf("Sleeping Mode\n");
-      // sem_wait(&semListener);
-      // putc(stdin, 'a');
       listener_exit = true;
     }
     sem_post(&semListener_wait);

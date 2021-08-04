@@ -19,7 +19,8 @@ typedef struct Queue {
 // Global Variables
 char data;
 char buf[SIZE];
-unsigned int buf_length;
+unsigned int cursor_head;
+unsigned int cursor_tail;
 bool listener_exit;
 pthread_t t1, t2, t3, t4, t5;
 pthread_mutex_t mutex_thread, mutex_io;

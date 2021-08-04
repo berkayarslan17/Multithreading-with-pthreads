@@ -9,7 +9,7 @@ void print_queue(int argument) {
   printf("\n");
 }
 
-// Save the value to the buffer until the space character
+// Save the data to the buffer until the space character
 void get_buffer() {
   static int i = 0;
   while (queue.data[i] != ' ') {
@@ -18,17 +18,34 @@ void get_buffer() {
   }
   // pass the space character
   i++;
-  buf_length = (i - 1) - buf_length;
 }
 
 void print_buffer() {
+  printf("%d\n", cursor_head);
+  printf("%d\n", cursor_tail);
+  for (unsigned int i = cursor_head; i < cursor_tail; i++) {
+    printf("%c ", buf[i]);
+  }
+
+  /* while (queue.data[i] != ' ') { */
+  /*   printf("%c ", buf[i]); */
+  /*   i++; */
+  /* } */
+  printf("\n");
+}
+
+void place_cursor() {
+  printf("Placing the cursor...\n");
   static int i = 0;
   while (queue.data[i] != ' ') {
-    printf("%c ", buf[i]);
     i++;
   }
-  printf("\n");
-  printf("Buffer Size: %d\n", i);
+  if (cursor_head == 0) {
+    cursor_head = cursor_tail;
+  } else
+    cursor_head = cursor_tail + 1;
+  cursor_tail = i;
+
   // pass the space character
   i++;
 }
@@ -50,8 +67,8 @@ void swap(char *arr_low, char *arr_high) {
 }
 
 void sort_data(char *arr) {
-  for (size_t i = 0; i < buf_length; i++) {
-    for (size_t j = i + 1; j < buf_length; j++) {
+  for (unsigned int i = cursor_head; i < cursor_tail; i++) {
+    for (size_t j = i + 1; j < cursor_tail; j++) {
       if (arr[j] < arr[i])
         swap(&arr[j], &arr[i]);
     }
