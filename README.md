@@ -24,4 +24,4 @@ This project contains 5 threads that works with different approaches.
 
 ### Command Thread
 1) Gets the command data
-2) If starts with 'S', stops Listener Thread.
+2) If ends with 'S', stops Listener Thread.
