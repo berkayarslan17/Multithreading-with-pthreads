@@ -12,7 +12,7 @@ void *listener_thread() {
 
     scanf("%c", &data);
 
-    // check whether is valid or not(0-9, A-Z, space and underscore)
+    // check whether is valid or not(0-9, A-Z, space and underscore are valid)
     if (('0' <= data && data <= '9') || ('A' <= data && data <= 'Z') ||
         data == ' ' || data == '_') {
       // add to queue

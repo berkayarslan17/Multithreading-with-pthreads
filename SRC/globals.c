@@ -21,29 +21,29 @@ void get_buffer() {
 }
 
 void print_buffer() {
-  printf("%d\n", cursor_head);
-  printf("%d\n", cursor_tail);
-  for (unsigned int i = cursor_head; i < cursor_tail; i++) {
+  for (size_t i = cursor_head; i < cursor_tail; i++) {
     printf("%c ", buf[i]);
   }
 
-  /* while (queue.data[i] != ' ') { */
-  /*   printf("%c ", buf[i]); */
-  /*   i++; */
-  /* } */
   printf("\n");
 }
 
 void place_cursor() {
   printf("Placing the cursor...\n");
   static int i = 0;
+
+  if (i == 0) {
+    cursor_head = cursor_head - 1;
+  }
   while (queue.data[i] != ' ') {
     i++;
   }
   if (cursor_head == 0) {
-    cursor_head = cursor_tail;
+    cursor_head = cursor_tail + 1;
+
   } else
     cursor_head = cursor_tail + 1;
+
   cursor_tail = i;
 
   // pass the space character
@@ -67,7 +67,7 @@ void swap(char *arr_low, char *arr_high) {
 }
 
 void sort_data(char *arr) {
-  for (unsigned int i = cursor_head; i < cursor_tail; i++) {
+  for (size_t i = cursor_head; i < cursor_tail; i++) {
     for (size_t j = i + 1; j < cursor_tail; j++) {
       if (arr[j] < arr[i])
         swap(&arr[j], &arr[i]);
