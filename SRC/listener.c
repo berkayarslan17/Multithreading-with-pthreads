@@ -1,5 +1,8 @@
 #include "listener.h"
-#include "globals.h"
+#include "listener_exit.h"
+#include "data.h"
+#include "queue.h"
+#include "pthread_utilities.h"
 
 void *listener_thread() {
   // read the data (scanf)
@@ -18,14 +21,12 @@ void *listener_thread() {
       // add to queue
       sem_wait(&semListener);
       pthread_mutex_lock(&mutex_thread);
-      //printf("The value is saved\n");
       queue_enqueue(data);
       pthread_mutex_unlock(&mutex_thread);
       sem_post(&semStream);
       pthread_cond_signal(&cond);
       // Wake the stream thread
     } else {
-      //printf("The value is not saved\n");
       sem_post(&semListener_wait);
     }
   }

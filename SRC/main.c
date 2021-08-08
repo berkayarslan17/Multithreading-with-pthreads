@@ -1,10 +1,13 @@
-#include "globals.h"
 #include "listener.h"
+#include "listener_exit.h"
 #include "stream.h"
 #include "block.h"
 #include "processing.h"
 #include "command.h"
+#include "queue.h"
+#include "pthread_utilities.h"
 
+pthread_t t1, t2, t3, t4, t5;
 
 int main() {
 
@@ -13,8 +16,8 @@ int main() {
   listener_exit = false;
 
   queue_init();
+  buffer_init();
   pthread_mutex_init(&mutex_thread, NULL);
-  pthread_mutex_init(&mutex_io, NULL);
   pthread_cond_init(&cond, NULL);
   sem_init(&semListener, 0, 1);
   sem_init(&semStream, 0, 0);
@@ -54,7 +57,6 @@ int main() {
   }
 
   pthread_mutex_destroy(&mutex_thread);
-  pthread_mutex_destroy(&mutex_io);
   pthread_cond_destroy(&cond);
   sem_destroy(&semListener);
   sem_destroy(&semStream);

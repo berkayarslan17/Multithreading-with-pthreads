@@ -1,12 +1,14 @@
 #include "command.h"
-#include "globals.h"
+#include "queue.h"
+#include "pthread_utilities.h"
+#include "listener_exit.h"
 
 void *command_thread() {
   // Get the command data
   // If ends with s stop ListenerThread
   while (1) {
     sem_wait(&semCommand);
-    if (buf[cursor_tail - 1] == 'S') {
+    if (buffer.data[buffer.cursor_tail - 1] == 'S') {
       // Stop Listener Thread
       printf("Sleeping Mode\n");
       listener_exit = true;

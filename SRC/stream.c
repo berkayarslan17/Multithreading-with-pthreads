@@ -1,5 +1,6 @@
 #include "stream.h"
-#include "globals.h"
+#include "pthread_utilities.h"
+#include "data.h"
 
 char table[10] = {8, 5, 4, 10, 3, 15, 7, 1, 3, 12};
 

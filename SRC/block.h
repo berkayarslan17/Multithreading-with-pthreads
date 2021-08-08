@@ -3,4 +3,6 @@
 
 void *block_thread(void);
 
+void get_buffer(void);
+
 #endif

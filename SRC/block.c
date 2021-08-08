@@ -1,5 +1,17 @@
 #include "block.h"
-#include "globals.h"
+#include "queue.h"
+#include "pthread_utilities.h"
+
+// Save the data to the buffer until the space character
+void get_buffer() {
+  static int i = 0;
+  while (queue.data[i] != ' ') {
+    buffer.data[i] = queue.data[i];
+    i++;
+  }
+  // pass the space character
+  i++;
+}
 
 void *block_thread() {
   unsigned int follower = 0;
@@ -20,7 +32,6 @@ void *block_thread() {
         sem_post(&semListener_wait);
       }
     }
-    //printf("block_thread\n");
     pthread_mutex_unlock(&mutex_thread);
   }
 }
